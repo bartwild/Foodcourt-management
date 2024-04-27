@@ -1,0 +1,71 @@
+resource_group: z10-piar
+location: polandcentral
+base_image: &base_image Ubuntu2204
+base_size: &base_size Standard_B1ms
+spot_policy: &spot_policy
+  priority: Spot
+  eviction_policy: Deallocate
+  max_price: 0.2
+
+services:
+  - name: app
+    vm: app-vm
+    script: deploy_app.sh
+    port: &app_port 5000
+  - name: database
+    vm: database-vm
+    script: deploy_database.sh
+    port: &database_port 5432
+    user: user
+    password: postgres123
+
+network:
+  name: VNet
+  address_prefix: &address_prefix 10.0.0.0/16
+
+network_security_groups:
+  - name: app-nsg
+    rules:
+      - name: app-access-rule
+        priority: 1000
+        source_address_prefixes: "*"
+        source_port_ranges: "*"
+        destination_address_prefixes: "*"
+        destination_port_ranges: *app_port
+  - name: database-nsg
+    rules:
+      - name: database-access-rule
+        priority: 1000
+        source_address_prefixes: *address_prefix
+        source_port_ranges: "*"
+        destination_address_prefixes: "*"
+        destination_port_ranges: *database_port
+
+subnets:
+  - name: app-subnet
+    address_prefix: 10.0.1.0/24
+    network_security_group: backend-nsg
+  - name: database-subnet
+    address_prefix: 10.0.2.0/24
+    network_security_group: database-nsg
+
+public_ips:
+  - name: app-ip
+
+virtual_machines:
+  - name: database-vm
+    spot: true
+    <<: *spot_policy
+    image: *base_image
+    size: *base_size
+    subnet: database-subnet
+    private_ip_address: 10.0.3.10
+    public_ip_address: ""
+  - name: app-vm
+    spot: true
+    <<: *spot_policy
+    image: *base_image
+    size: *base_size
+    subnet: app-subnet
+    private_ip_address: 10.0.2.10
+    public_ip_address: app-ip
