@@ -1,9 +1,14 @@
-# PIAR flask app
+## Deployment
+### Prerequisites
 
-### Setup
-1. Fill .env based on .env.example
+To run scripts, you are required to be on azure
 
-2.Setup & run app in docker:
+To deploy:
+```bash
+./deploy.sh config-1-simple.yaml
 ```
-$ docker-compose up -d
+
+To undeploy:
+```bash
+./undeploy.sh config-1-simple.yaml
 ```
