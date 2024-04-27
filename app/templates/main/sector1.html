@@ -31,8 +31,8 @@
                 }
             });
     
-            socket.on('update_map', function(data) {
-                console.log('Update map', data);
+            socket.on('update_map_s1', function(data) {
+                console.log('Update sector 1', data);
                 console.log('Image file:', data.image_file); // Dodajemy wypisanie wartości data.image_file
                 // Aktualizacja obrazu tła dla diva '.full-screen-image'
                 document.querySelector('.full-screen-image').style.backgroundImage = "url('" + data.image_file + "')";
