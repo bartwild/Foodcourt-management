@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Restauracji</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    
+            socket.on('connect', function() {
+                console.log('Connected to the server');
+                var sectorTables = {{ table_status | tojson }};
+                for (var table in sectorTables) {
+                    var status = sectorTables[table]['status'];
+                    var postData = {'table_number': parseInt(table), 'status': status};
+                    fetch('/update_tables', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(postData)
+                    })
+                    .then(response => {
+                        console.log('Table status updated successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error updating table status:', error);
+                    });
+                }
+            });
+    
+            socket.on('update_map_s1', function(data) {
+                console.log('Update sector 1', data);
+                console.log('Image file:', data.image_file); // Dodajemy wypisanie wartości data.image_file
+                // Aktualizacja obrazu tła dla diva '.full-screen-image'
+                document.querySelector('.full-screen-image').style.backgroundImage = "url('" + data.image_file + "')";
+            });
+    
+            socket.on('disconnect', function() {
+                console.log('Disconnected from the server');
+            });
+        });
+    </script>      
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Ustawienie wysokości na 100% dla całego dokumentu */
+        }
+        .full-screen-image {
+            height: 100vh; /* Ustawienie wysokości na 100% wysokości okna przeglądarki */
+            width: 100%; /* Szerokość równa 100% szerokości okna przeglądarki */
+            background-size: cover; /* Pokrycie całego obszaru diva bez rozciągania obrazu */
+            background-position: center; /* Centrowanie obrazu w tle */
+        }
+    </style>
+</head>
+<body>
+    <div class="full-screen-image"></div> <!-- Kontener na obraz mapy -->
+</body>
+</html>
