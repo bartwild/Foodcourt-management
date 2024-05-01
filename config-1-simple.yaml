@@ -8,16 +8,16 @@ spot_policy: &spot_policy
   max_price: 0.2
 
 services:
-  - name: app
-    vm: app-vm
-    script: deploy_app.sh
-    port: &app_port 5000
   - name: database
     vm: database-vm
     script: deploy_database.sh
     port: &database_port 5432
     user: user
     password: postgres123
+  - name: app
+    vm: app-vm
+    script: deploy_app.sh
+    port: &app_port 5000
 
 network:
   name: VNet
@@ -44,7 +44,7 @@ network_security_groups:
 subnets:
   - name: app-subnet
     address_prefix: 10.0.1.0/24
-    network_security_group: backend-nsg
+    network_security_group: app-nsg
   - name: database-subnet
     address_prefix: 10.0.2.0/24
     network_security_group: database-nsg
@@ -59,7 +59,7 @@ virtual_machines:
     image: *base_image
     size: *base_size
     subnet: database-subnet
-    private_ip_address: 10.0.3.10
+    private_ip_address: 10.0.2.10
     public_ip_address: ""
   - name: app-vm
     spot: true
@@ -67,5 +67,5 @@ virtual_machines:
     image: *base_image
     size: *base_size
     subnet: app-subnet
-    private_ip_address: 10.0.2.10
+    private_ip_address: 10.0.1.10
     public_ip_address: app-ip

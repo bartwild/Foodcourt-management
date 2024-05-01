@@ -4,20 +4,34 @@ DATABASE_PORT=$1
 DATABASE_USER=$2
 DATABASE_PASSWORD=$3
 
-# Instalacja PostgreSQL
+# Instalacja potrzebnych narzędzi
 sudo apt-get update
-sudo apt-get install -y postgresql postgresql-contrib
+sudo apt-get install -y curl git
 
-# Konfiguracja PostgreSQL do akceptowania połączeń sieciowych
-sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/12/main/postgresql.conf
-sudo sed -i "s/#port = 5432/port = $DATABASE_PORT/" /etc/postgresql/12/main/postgresql.conf
+# Pobieranie najnowszej wersji Docker'a
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 
-# Konfiguracja reguł dostępu
-echo "host all all 0.0.0.0/0 md5" | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
+# Instalacja Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
-# Restart PostgreSQL
-sudo systemctl restart postgresql
+# Tworzenie pliku docker-compose.yml
+cat << EOF > docker-compose.yml
+version: '3.10'
 
-# Ustawienie użytkownika i hasła
-sudo -u postgres psql -c "CREATE USER $DATABASE_USER WITH PASSWORD '$DATABASE_PASSWORD';"
-sudo -u postgres psql -c "CREATE DATABASE app_db OWNER $DATABASE_USER;"
+services:
+  postgres_db:
+    image: postgres:latest
+    container_name: PostgresCont
+    restart: always
+    environment:
+      - POSTGRES_DB=app_db
+      - POSTGRES_USER=$DATABASE_USER
+      - POSTGRES_PASSWORD=$DATABASE_PASSWORD
+    ports:
+      - '$DATABASE_PORT:5432'
+EOF
+
+# Uruchomienie kontenera Docker
+sudo docker-compose up -d

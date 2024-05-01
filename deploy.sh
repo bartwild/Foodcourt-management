@@ -89,8 +89,8 @@ function deploy_service() {
 	PORT=$(./yq '.port' <<<"$SERVICE")
 	info ">>DEPLOYING SERVICE $NAME"
 
-	DATABASE_USER=$(./yq e '.services_preloading[] | select(.name == "database") | .user' <<<"$CONFIG")
-	DATABASE_PASSWORD=$(./yq e '.services_preloading[] | select(.name == "database") | .password' <<<"$CONFIG")
+	DATABASE_USER=$(./yq e '.services[] | select(.name == "database") | .user' <<<"$CONFIG")
+	DATABASE_PASSWORD=$(./yq e '.services[] | select(.name == "database") | .password' <<<"$CONFIG")
 
 	case $NAME in
 	database)
@@ -98,8 +98,8 @@ function deploy_service() {
 		PRELOADING="0"
 		;;
 	app)
-		DATABASE_PORT=$(./yq e '.services_preloading[] | select(.name == "database") | .port' <<<"$CONFIG")
-		DATABASE_ADDRESS=$(./yq e ".virtual_machines[] | select(.name == \"$(./yq e '.services_preloading[] | select(.name == "database") | .vm' <<<"$CONFIG")\") | .private_ip_address" <<<"$CONFIG")
+		DATABASE_PORT=$(./yq e '.services[] | select(.name == "database") | .port' <<<"$CONFIG")
+		DATABASE_ADDRESS=$(./yq e ".virtual_machines[] | select(.name == \"$(./yq e '.services[] | select(.name == "database") | .vm' <<<"$CONFIG")\") | .private_ip_address" <<<"$CONFIG")
 		PARAMS=("$DATABASE_ADDRESS" "$DATABASE_PORT" "$DATABASE_USER" "$DATABASE_PASSWORD" "$PORT")
 		;;
 	*)
