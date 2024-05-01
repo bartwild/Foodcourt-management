@@ -6,7 +6,7 @@ def choose_sector_image(free_tables, sector):
         image_file = 'map_' + '_'.join(map(str, free_tables)) + f'_s{sector}' + '.png'
         image_file = image_file.replace(':', "_")
     else:
-        image_file = 'map_none.png'
+        image_file = 'map_' + f's{sector}' + '.png'
     return image_file
 
 
