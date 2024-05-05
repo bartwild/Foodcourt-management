@@ -13,7 +13,7 @@ bp = Blueprint(
     __name__,
     template_folder="templates",
     static_folder="static",
-    url_prefix="/home",
+    url_prefix="/",
 )
 
 table_status = {
@@ -45,9 +45,8 @@ def sector2():
 def get_table_status():
     return jsonify(table_status)
 
-@bp.route("/home")
-def home():
-    products = None
+@bp.route("/main")
+def main():
     return render_template("main/main.html")
 
 

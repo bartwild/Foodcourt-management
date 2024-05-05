@@ -12,6 +12,6 @@ bp = Blueprint(
 
 
 @bp.route("/")
-def cart_detail():
+def start():
     burger = os.path.join('static','images','food','burger.jpg')
     return render_template("start.html", burg = burger)

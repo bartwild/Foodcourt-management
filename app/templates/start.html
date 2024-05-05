@@ -12,29 +12,48 @@
         }
 
         .image-container {
-            display: block;
-            height: 75vh; 
-            overflow: hidden; /* Zapobiega wyświetlaniu elementów, które wychodzą poza .image-container */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75vh;
+            overflow: hidden;
         }
 
         .image-container img {
-            width: 100%; /* Obrazek zajmie całą szerokość .image-container */
-            height: auto; /* Zachowuje proporcje obrazka */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+
+            width: auto;
+            height: auto;
+            z-index: -1;
         }
             
         .get-started {
+            position: absolute;
+            bottom: 7vh;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            padding: 20px;
         }
 
-        .get-started button {
+        .get-started a {
+            display: inline-block;
             background-color: orange;
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 40px;
+            padding: 2.5% 3%;
+            font-size: 3vw;
             cursor: pointer;
             border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .get-started a:hover {
+            background-color: darkorange;
         }
     </style>
 </head>
@@ -43,7 +62,7 @@
         <img src="{{burg}}" alt="Burger">
     </div>
     <div class="get-started">
-        <button>Get Started</button>
+        <a href="/main">Get Started</a>
     </div>
 </body>
 </html>
