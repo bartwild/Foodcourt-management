@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, request, jsonify
-from ..models import Product
+# from ..models import Product
 import json
 from ..map_utils import choose_sector_image, choose_total_image, get_free_tables_per_sector
 from .. import socketio
@@ -13,7 +13,7 @@ bp = Blueprint(
     __name__,
     template_folder="templates",
     static_folder="static",
-    url_prefix="/",
+    url_prefix="/home",
 )
 
 table_status = {
@@ -45,9 +45,9 @@ def sector2():
 def get_table_status():
     return jsonify(table_status)
 
-@bp.route("/")
+@bp.route("/home")
 def home():
-    products = Product.query.all()
+    products = None
     return render_template("main/main.html")
 
 

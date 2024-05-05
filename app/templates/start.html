@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(20, 81, 82);
+        }
+
+        .image-container {
+            display: block;
+            height: 75vh; 
+            overflow: hidden; /* Zapobiega wyświetlaniu elementów, które wychodzą poza .image-container */
+        }
+
+        .image-container img {
+            width: 100%; /* Obrazek zajmie całą szerokość .image-container */
+            height: auto; /* Zachowuje proporcje obrazka */
+        }
+            
+        .get-started {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .get-started button {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 40px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="{{burg}}" alt="Burger">
+    </div>
+    <div class="get-started">
+        <button>Get Started</button>
+    </div>
+</body>
+</html>
