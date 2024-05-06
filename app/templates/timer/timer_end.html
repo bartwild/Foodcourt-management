@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .timer-container {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        #timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 timer-container">
+                <div id="timer">Time's up!</div>
+                <div class="buttons">
+                    <button id="prolong-btn" class="btn btn-primary">Prolong Timer</button>
+                    <button id="leave-btn" class="btn btn-secondary">Leave</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

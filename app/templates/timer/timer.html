@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            animation: pulse 1s infinite alternate; /* Example animation */
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <!-- Timer Section -->
+
+<div class="timer-container">
+/h1>
+        <div id="timer">0:00</div>
+</div>
+
+    <script src="{{ url_for('static', filename='timer.js') }}"></script>\
+
+{% endblock %}
