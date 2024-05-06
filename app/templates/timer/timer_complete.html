@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .timer-container {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        #timer {
+            font-size: 100px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+
+        }
+        .bi-stopwatch {
+            color: #333;
+        }
+
+        .btn {
+            margin-right: 15px;
+            margin-left: 15px;
+
+            font-size: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 20px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 timer-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z"/>
+                    <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3"/>
+                </svg>
+                <div id="timer">  Time's up!</div>
+                <div class="buttons">
+                    <a id="prolong-btn" class="btn btn-primary" href="{{url_for('timer.timer')}}">Prolong Timer</a>
+                    <a id="leave-btn" class="btn btn-secondary" href="{{url_for('main.main')}}">Leave</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
