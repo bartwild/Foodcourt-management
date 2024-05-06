@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(20, 81, 82);
+        }
+
+        .image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75vh;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+            
+        .get-started {
+            position: absolute;
+            bottom: 7vh;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .get-started a {
+            display: inline-block;
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 2.5% 3%;
+            font-size: 3vw;
+            cursor: pointer;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .get-started a:hover {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="{{burg}}" alt="Burger">
+    </div>
+    <div class="get-started">
+        <a href="/main">Get Started</a>
+    </div>
+</body>
+</html>
