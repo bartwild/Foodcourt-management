@@ -12,8 +12,9 @@ function calculateMinutesSeconds() {
     const minutes = Math.floor(remaining / 60);
     const seconds = remaining % 60;
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
 }
+
+
 function updateCircle() {
     const rotation = (360 * remaining) / duration;
     if (rotation <= 180) {

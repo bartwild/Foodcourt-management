@@ -20,15 +20,9 @@ def start_timer():
     print("Timer completed!")
 
 
-@bp.route("/start")
-def run_timer():
-    threading.Thread(target=start_timer).start()
-    return "Timer has been started!"
-
-
 @bp.route("/complete")
 def timer_complete():
-    return render_template("timer/timer_end.html")
+    return render_template("timer/timer_complete.html")
 
 
 @bp.route("/")
