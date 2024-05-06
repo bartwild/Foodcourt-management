@@ -8,6 +8,12 @@ const insideCircle = document.querySelector('.inside-circle');
 let interval;
 let remaining = duration;
 
+function calculateMinutesSeconds() {
+    const minutes = Math.floor(remaining / 60);
+    const seconds = remaining % 60;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+}
 function updateCircle() {
     const rotation = (360 * remaining) / duration;
     if (rotation <= 180) {
@@ -18,8 +24,9 @@ function updateCircle() {
         maskHalf.style.transform = 'rotate(180deg)';
         fill.forEach(f => f.style.transform = `rotate(${rotation}deg)`);
     }
-    insideCircle.textContent = remaining;
+    insideCircle.textContent = calculateMinutesSeconds();
 }
+
 
 function startTimer() {
     interval = setInterval(() => {
