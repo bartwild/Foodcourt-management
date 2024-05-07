@@ -81,3 +81,8 @@ def update_tables():
     logging.debug("Total image file: %s", "/static/images/maps/"+image_file)  # Logowanie URL obrazu
     socketio.emit('update_map', {'image_file': "/static/images/maps/"+image_file})
     return jsonify({'success': True}), 200
+
+
+@bp.route("/pedro")
+def pedro():
+    return render_template("main/pedro.html")
