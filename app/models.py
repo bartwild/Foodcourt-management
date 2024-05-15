@@ -1,12 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+from . import db
 
 class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     image_url = db.Column(db.String(200))
-    description = db.Column(db.String(500), nullable=True)  # Dodanie pola opisu
+    description = db.Column(db.String(500), nullable=True)
 
     products = db.relationship('Product', backref='restaurant', lazy=True)
 

@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_socketio import SocketIO
 from .config import Config
+from flask_migrate import Migrate
 from .views import cart, products, timer
 from .database import db
 
@@ -12,7 +13,7 @@ def create_app():
     app.config.from_object(Config())
     from .views import main, cart, products, start
     from .database import db
-
+    migrate = Migrate(app, db)
     db.init_app(app)
 
     with app.app_context():
