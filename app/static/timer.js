@@ -36,9 +36,25 @@ function startTimer() {
             window.location.href = '/timer/complete';
             return;
         }
+        if (remaining === 300) {
+            document.getElementById('extendContainer').style.display = 'block';
+        }
+
         remaining--;
         updateCircle();
     }, 1000);
 }
+
+function extendTimer() {
+    remaining += 600;;
+    document.getElementById('extendContainer').style.display = 'none';
+}
+
+function dismissContainer() {
+    document.getElementById('extendContainer').style.display = 'none';
+}
+
+document.getElementById('extendButton').addEventListener('click', extendTimer);
+document.getElementById('dismissButton').addEventListener('click', dismissContainer);
 
 window.onload = startTimer;
