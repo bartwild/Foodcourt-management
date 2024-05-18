@@ -10,20 +10,16 @@
 {% block content %}
 
 <div id="timer-template">
-    <div class="container col">
-
-        <div class="row" id="free-table-row">
-            <button class="btn btn-custom btn-custom-primary" id="free-table"> <i class="bi bi-arrow-right"></i> Free the table and leave </button>
-        </div>
-        <div class="container row"> 
-            <div class="timer-container" >
+    <div class="container col" id="">
+        <div class="container row" id="timer-row"> 
+            <div id="timer-text" >
                 Enjoy your meal!
             </div>
             <div class="burger-icon">
                 🍔
             </div>
 
-            <div class="timer-container" id="timer">
+            <div id="timer">
                 20:00
             </div>
 
@@ -33,8 +29,11 @@
                 <button class="btn btn-custom btn-custom-primary" id="extendButton">Yes + 10 min</button>
             </div>
         </div>
+        <div class="container row" id="free-table-row">
+            <a href="/" class="btn btn-custom btn-custom-primary" id="free-table"> <i class="bi bi-arrow-right"></i> Free the table and leave </a>
+        </div>
     </div>
 </div>
-<script src="{{ url_for('static', filename='timer.js') }}"></script>\
+<script src="{{ url_for('static', filename='timer.js') }}"></script>
 
 {% endblock %}
