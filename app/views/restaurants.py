@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint
 
 bp = Blueprint(
-    "products",
+    "restaurants",
     __name__,
     template_folder="templates",
     static_folder="static",
@@ -9,7 +9,7 @@ bp = Blueprint(
 )
 
 
-@bp.route("/products")
+@bp.route("/restaurants")
 def product_list():
     # Do some stuff
-    return render_template("main/products.html")
+    return render_template("main/restaurants.html")
