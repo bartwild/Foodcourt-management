@@ -2,27 +2,36 @@
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='timer.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 {% endblock %}
 {% block navbar %}
 {% endblock %}
+
 {% block content %}
-<div id="timer-template" >
-    <div class="container"> 
-        <div class="timer-container" >
-            Enjoy your meal!
-        </div>
-        <div class="burger-icon">
-            🍔
-        </div>
 
-        <div class="timer-container" id="timer">
-            20:00
-        </div>
+<div id="timer-template">
+    <div class="container col">
 
-        <div id="extendContainer">
-            <p> Less than 5 minutes remaining. Would you like to extend the timer?</p>
-            <button class="btn btn-custom btn-custom-danger " id="dismissButton">No, Bye</button>
-            <button class="btn btn-custom btn-custom-primary" id="extendButton">Yes + 10 min</button>
+        <div class="row" id="free-table-row">
+            <button class="btn btn-custom btn-custom-primary" id="free-table"> <i class="bi bi-arrow-right"></i> Free the table and leave </button>
+        </div>
+        <div class="container row"> 
+            <div class="timer-container" >
+                Enjoy your meal!
+            </div>
+            <div class="burger-icon">
+                🍔
+            </div>
+
+            <div class="timer-container" id="timer">
+                20:00
+            </div>
+
+            <div id="extendContainer">
+                <p> Less than 5 minutes remaining. Would you like to extend the timer?</p>
+                <button class="btn btn-custom btn-custom-danger " id="dismissButton">No, Bye</button>
+                <button class="btn btn-custom btn-custom-primary" id="extendButton">Yes + 10 min</button>
+            </div>
         </div>
     </div>
 </div>
