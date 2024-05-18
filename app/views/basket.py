@@ -2,7 +2,7 @@ from flask import render_template, Blueprint
 
 
 bp = Blueprint(
-    "reservation",
+    "basket",
     __name__,
     template_folder="templates",
     static_folder="static",
@@ -10,7 +10,7 @@ bp = Blueprint(
 )
 
 
-@bp.route("/reservation")
+@bp.route("/basket")
 def product_list():
     # Do some stuff
-    return render_template("main/reservation.html")
+    return render_template("main/basket.html")
