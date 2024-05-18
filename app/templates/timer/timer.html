@@ -1,109 +1,31 @@
 {% extends "base.html" %}
 {% block head %}
     {{ super() }}
-    <style>
-        .timer-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-        .circle-wrap {
-            width: 400px;
-            height: 400px;
-            background: #fff;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .circle {
-            width: 100%;
-            height: 100%;
-            clip: rect(0px, 400px, 400px, 200px);
-        }
-
-        .mask, .fill {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        .mask {
-            clip: rect(0px, 200px, 400px, 0px);
-        }
-
-        .fill {
-            background: #3498db;
-            clip: rect(0px, 200px, 400px, 0px);
-            transition: transform 0.5s linear;
-        }
-
-        .mask.full .fill {
-            clip: rect(auto, auto, auto, auto);
-        }
-
-        .inside-circle {
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            background: #fff;
-            line-height: 320px;
-            text-align: center;
-            margin-top: 40px;
-            margin-left: 40px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            font-size: 40px;
-            font-weight: bold;
-        }
-
-        .half .fill {
-            transform: rotate(180deg);
-        }
-        #extendContainer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            display: none;
-            padding: 15px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{{url_for('static', filename='timer.css')}}">
+{% endblock %}
+{% block navbar %}
 {% endblock %}
 {% block content %}
-    <!-- Timer Section -->
-    <div class="timer-container">
+<div id="timer-template" >
+    <div class="container"> 
+        <div class="timer-container" >
+            Enjoy your meal!
+        </div>
+        <div class="burger-icon">
+            🍔
+        </div>
 
-    <div class="circle-wrap">
-        <div class="circle">
-            <div class="mask full">
-                <div class="fill"></div>
-            </div>
-            <div class="mask half">
-                <div class="fill"></div>
-            </div>
-            <div class="inside-circle">
-                20:00
-            </div>
+        <div class="timer-container" id="timer">
+            20:00
+        </div>
+
+        <div id="extendContainer">
+            <p> Less than 5 minutes remaining. Would you like to extend the timer?</p>
+            <button class="btn btn-custom btn-custom-danger " id="dismissButton">No, Bye</button>
+            <button class="btn btn-custom btn-custom-primary" id="extendButton">Yes + 10 min</button>
         </div>
     </div>
 </div>
-
-    <div id="extendContainer">
-        <p>You have 5 minutes remaining. Would you like to extend the timer?</p>
-        <button class="btn btn-secondary" id="dismissButton">No</button>
-        <button class="btn btn-primary" id="extendButton">Yes</button>
-    </div>
-
 <script src="{{ url_for('static', filename='timer.js') }}"></script>\
 
 {% endblock %}
