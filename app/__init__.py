@@ -2,7 +2,6 @@ from flask import Flask
 from flask_socketio import SocketIO
 from .config import Config
 from flask_migrate import Migrate
-from .views import cart, products, timer
 from .database import db
 
 socketio = SocketIO()  # Tworzymy globalną instancję SocketIO
@@ -11,8 +10,9 @@ socketio = SocketIO()  # Tworzymy globalną instancję SocketIO
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config())
-    from .views import main, cart, products, start, restaurants
+    from .views import main, cart, products, start, restaurants, timer
     from .database import db
+
     migrate = Migrate(app, db)
     db.init_app(app)
 
