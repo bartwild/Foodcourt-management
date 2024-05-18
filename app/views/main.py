@@ -4,9 +4,9 @@ import json
 from ..map_utils import choose_sector_image, choose_total_image, get_free_tables_per_sector
 from .. import socketio
 import logging
-
 # Ustawienie poziomu logowania na DEBUG (lub inny poziom według potrzeb)
 logging.basicConfig(level=logging.DEBUG)
+from ..models import Restaurant
 
 bp = Blueprint(
     "main",
@@ -47,7 +47,8 @@ def get_table_status():
 
 @bp.route("/main")
 def main():
-    return render_template("main/main.html")
+    restaurants = Restaurant.query.all()
+    return render_template("main/main.html", restaurants=restaurants)
 
 
 @bp.route('/update_tables', methods=['POST'])
