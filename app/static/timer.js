@@ -20,7 +20,7 @@ function startTimer() {
     interval = setInterval(() => {
         if (remaining <= 0) {
             clearInterval(interval);
-            window.location.href = '/timer/complete';
+            window.location.href = '/';
             return;
         }
         if (remaining === 300) {
