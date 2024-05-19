@@ -26,7 +26,7 @@ def upgrade():
     if "restaurant" not in tables:
         op.create_table(
             "restaurant",
-            sa.Column("id", sa.Integer(), nullable=False),
+            sa.Column("id", sa.Integer(), nullable=False, autoincrement=True),
             sa.Column("name", sa.String(length=100), nullable=False),
             sa.Column("image_url", sa.String(length=200), nullable=True),
             sa.Column("description", sa.String(length=500), nullable=True),
@@ -36,7 +36,7 @@ def upgrade():
     if "product" not in tables:
         op.create_table(
             "product",
-            sa.Column("id", sa.Integer(), nullable=False),
+            sa.Column("id", sa.Integer(), nullable=False, autoincrement=True),
             sa.Column("name", sa.String(length=100), nullable=False),
             sa.Column("description", sa.Text(), nullable=True),
             sa.Column("image_url", sa.String(length=200), nullable=True),
@@ -44,6 +44,7 @@ def upgrade():
             sa.ForeignKeyConstraint("restaurant_id"),
             sa.PrimaryKeyConstraint("id"),
         )
+
     # ### end Alembic commands ###
 
 
