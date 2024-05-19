@@ -11,7 +11,16 @@ socketio = SocketIO()  # Tworzymy globalną instancję SocketIO
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config())
-    from .views import main, cart, products, start, restaurants, timer, basket
+    from .views import (
+        main,
+        cart,
+        products,
+        start,
+        restaurants,
+        timer,
+        basket,
+        food_ready,
+    )
     from .database import db
 
     migrate = Migrate(app, db)
@@ -32,5 +41,6 @@ def create_app():
     app.register_blueprint(timer.bp)
     app.register_blueprint(restaurants.bp)
     app.register_blueprint(basket.bp)
+    app.register_blueprint(food_ready.bp)
 
     return app
