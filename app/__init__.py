@@ -4,7 +4,7 @@ from .config import Config
 from flask_migrate import Migrate
 from .views import cart, products, timer
 from .database import db
-from .load_db_data import load_data
+from .db_data_utils import load_data, truncate_tables
 
 socketio = SocketIO()  # Tworzymy globalną instancję SocketIO
 
@@ -19,8 +19,8 @@ def create_app():
     db.init_app(app)
 
     with app.app_context():
-        db.drop_all()
         db.create_all()
+        truncate_tables()
         load_data()
     socketio.init_app(app)
 

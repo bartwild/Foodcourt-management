@@ -1,20 +1,11 @@
 from . import db
 from .models import Restaurant
 import csv
+from sqlalchemy.sql import text
 
 
 def load_data():
-    # restaurant1 = Restaurant(
-    #     name="Pasta Palace",
-    #     image_url="static/images/food/pizzeria.jpg",
-    #     description="A cozy place with the best pasta in town.",
-    # )
-    # restaurant2 = Restaurant(
-    #     name="Burger Barn",
-    #     image_url="static/images/food/burgerownia.jpg",
-    #     description="Juicy burgers and crispy fries.",
-    # )
-    for restaurant in read_restaurants_file("app/static/text_files/restaurants.csv"):
+    for restaurant in read_restaurants_file("app/static/text_files/restaurant.csv"):
         print(restaurant)
         new_restaurant = Restaurant(
             name=restaurant["name"],
@@ -23,10 +14,6 @@ def load_data():
         )
         db.session.add(new_restaurant)
         db.session.commit()
-
-    # db.session.add(restaurant1)
-    # db.session.add(restaurant2)
-    # db.session.commit()
 
 
 def read_restaurants_file(file_path):
@@ -43,3 +30,9 @@ def read_restaurants_file(file_path):
             restaurants.append(restaurant)
 
     return restaurants
+
+
+def truncate_tables():
+    for table_name in db.metadata.tables:
+        db.session.execute(text(f"DELETE FROM {table_name}"))
+    db.session.commit()
