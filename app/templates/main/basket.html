@@ -1,14 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Basket VIEW</h1>
 
-<section class="container text-center my-4">
-    <a class="btn btn-custom m-2" href="/products">
-        <span class="material-icons icon-pizza">local_pizza</span> Pizza
-    </a>
-    <a class="btn btn-custom m-2" href="/products">
-        <span class="material-icons icon-burger">fastfood</span> Burger
-    </a>
-</section>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Notification Example</title>
+    <link rel="stylesheet" href="static/order.css">
+</head>
+<body>
+    <div id="notification" class="notification hidden">
+        <span id="notification-message">Your order has been processed successfully!</span>
+        <button id="close-btn">&times;</button>
+    </div>
+
+    <!-- Featured Restaurants -->
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Your Order</h2>
+        <div class="row">
+            {% for restaurant in restaurants %}
+            <div class="col-md-4">
+                <div class="card restaurant-card">
+                    <img src="{{ restaurant.image_url }}" class="card-img-top" alt="{{ restaurant.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ restaurant.name }}</h5>
+                        <p class="card-text">{{ restaurant.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+
+
+    <a id="order-btn" href="/timer" class="btn">Submit Order</a>
+
+    <script src="static/order.js"></script>
+</body>
+</html>
 
 {% endblock %}
