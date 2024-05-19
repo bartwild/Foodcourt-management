@@ -1,0 +1,4 @@
+name,description,image_url,price,category,restaurant_name
+Pizza,"Ham, cheese and onion",static/images/food/pizza1.jpg,10.99,Main course,Pasta Palace
+Burger,"Pork, cheese and lettuce",static/images/food/burger.jpg,2.99,Main course,Burger Barn
+
