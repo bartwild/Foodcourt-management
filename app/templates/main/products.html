@@ -1,1 +1,25 @@
-<h1>Products VIEW</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="header-container">
+    <h1>Products</h1>
+    <a class="cart-button" href="/basket">
+        <i class="material-icons">shopping_cart</i>
+    </a>
+</div>
+<div class="container my-5">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="card restaurant-card">
+                <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text flex-grow-1">{{ product.description }}</p>
+                    <p class="card-text">Restaurant: {{ product.restaurant.name }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

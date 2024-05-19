@@ -1,4 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>RESTAURANTS VIEW</h1>
+<div class="header-container">
+    <h1>Restaurants</h1>
+    <a class="cart-button" href="/basket">
+        <i class="material-icons">shopping_cart</i>
+    </a>
+</div>
+<div class="container my-5">
+    <div class="row">
+        {% for restaurant in restaurants %}
+        <div class="col-md-4">
+            <div class="card restaurant-card">
+                <img src="{{ restaurant.image_url }}" class="card-img-top" alt="{{ restaurant.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                    <p class="card-text flex-grow-1">{{ restaurant.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

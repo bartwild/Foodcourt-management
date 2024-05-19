@@ -1,4 +1,5 @@
 from flask import render_template, Blueprint
+from ..models import Restaurant
 
 bp = Blueprint(
     "restaurants",
@@ -11,5 +12,5 @@ bp = Blueprint(
 
 @bp.route("/restaurants")
 def product_list():
-    # Do some stuff
-    return render_template("main/restaurants.html")
+    restaurants = Restaurant.query.all()
+    return render_template("main/restaurants.html", restaurants = restaurants)

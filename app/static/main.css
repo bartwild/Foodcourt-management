@@ -32,6 +32,12 @@ body, html {
     object-fit: cover;
 }
 
+.restaurant-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .footer {
     position: fixed;
     left: 0;
@@ -50,4 +56,24 @@ body, html {
 
 .arrow-icon:hover .material-icons {
     color: rgb(20, 81, 82); 
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 70px; /* Odstępy po bokach, możesz dostosować według potrzeby */
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; 
+    height: 40px; 
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    cursor: pointer;
+    text-decoration: none;
 }
