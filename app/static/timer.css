@@ -1,0 +1,76 @@
+#timer-template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    position: relative;
+}
+
+#timer-row{
+    text-align: center;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.burger-icon {
+    font-size: 120px;
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+#extendContainer {
+    font-size: 20px;
+    margin: 20px 0;
+    color: #333333;
+    display: none;
+}
+
+#timer-text, #timer{
+    font-size: 48px;
+    font-weight: 700;
+    margin: 20px 0;
+    color: #fb8500;
+}
+
+.btn-custom {
+    font-size: 18px;
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-custom-danger {
+    background-color: #dc3545;
+    color: white;
+}
+.btn-custom-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+.btn-custom-primary {
+    background-color: #007bff;
+    color: white;
+}
+.btn-custom-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+#free-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #dfe1e5;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    font-size: 28px;
+    font-weight: 500;
+}

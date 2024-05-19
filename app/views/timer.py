@@ -14,17 +14,6 @@ bp = Blueprint(
 )
 
 
-def start_timer():
-    print("Timer started!")
-    time.sleep(10)  # Timer na 10 sekund
-    print("Timer completed!")
-
-
-@bp.route("/complete")
-def timer_complete():
-    return render_template("timer/timer_complete.html")
-
-
 @bp.route("/")
 def timer():
     return render_template("timer/timer.html")
