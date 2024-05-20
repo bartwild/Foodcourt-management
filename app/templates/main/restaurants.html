@@ -9,7 +9,7 @@
 <div class="container my-5">
     <div class="row">
         {% for restaurant in restaurants %}
-        <div class="col-md-4">
+        <a class="col-md-4" href="restaurant/{{restaurant.name}}">
             <div class="card restaurant-card">
                 <img src="{{ restaurant.image_url }}" class="card-img-top" alt="{{ restaurant.name }}">
                 <div class="card-body">
@@ -17,7 +17,7 @@
                     <p class="card-text flex-grow-1">{{ restaurant.description }}</p>
                 </div>
             </div>
-        </div>
+        </a>
         {% endfor %}
     </div>
 </div>

@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint
-from ..models import Restaurant
+from ..models import Restaurant, Product
 
 bp = Blueprint(
     "restaurants",
@@ -14,3 +14,9 @@ bp = Blueprint(
 def product_list():
     restaurants = Restaurant.query.all()
     return render_template("main/restaurants.html", restaurants = restaurants)
+
+@bp.route('/restaurant/<restaurant_name>')
+def restaurant(restaurant_name):
+    restaurant = Restaurant.query.filter_by(name=restaurant_name).first_or_404()
+    products = Product.query.filter_by(restaurant_id=restaurant.id).all()
+    return render_template('main/restaurant.html', restaurant=restaurant, products=products)
