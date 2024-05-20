@@ -15,7 +15,6 @@ def create_app():
     from .views import main, cart, products, start, restaurants, timer, basket
     from .database import db
     cache.init_app(app, config={'CACHE_TYPE': 'simple'})
-    print("Cache initialized: ", cache)
     migrate = Migrate(app, db)
     db.init_app(app)
 

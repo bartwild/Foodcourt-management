@@ -15,7 +15,7 @@ def product_list():
     restaurants = Restaurant.query.all()
     return render_template("main/restaurants.html", restaurants = restaurants)
 
-@bp.route('/restaurant/<restaurant_name>')
+@bp.route('/restaurant/<string:restaurant_name>')
 def restaurant(restaurant_name):
     restaurant = Restaurant.query.filter_by(name=restaurant_name).first_or_404()
     products = Product.query.filter_by(restaurant_id=restaurant.id).all()

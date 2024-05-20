@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container my-5">
     <div class="card mb-5">
-        <img src="{{ restaurant.image_url }}" class="card-img-top" alt="{{ restaurant.name }}">
+        <img src="/{{ restaurant.image_url }}" class="card-img-top" alt="{{ restaurant.name }}">
         <div class="card-body">
             <h1 class="card-title">{{ restaurant.name }}</h1>
             <p class="card-text">{{ restaurant.description }}</p>
@@ -14,7 +14,7 @@
         {% for product in products %}
         <div class="col-md-4 mb-4">
             <div class="card restaurant-card">
-                <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                <img src="/{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text flex-grow-1">{{ product.description }}</p>
