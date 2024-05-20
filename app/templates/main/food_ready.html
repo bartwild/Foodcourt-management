@@ -2,20 +2,14 @@
 {% block title %}Food Ready{% endblock %}
 {% block content %}
 
-<div id="notification" class="notification hidden">
-    <span id="notification-message">Thank you! Enjoy your meal!</span>
-    <button id="close-btn">&times;</button>
-</div>
-
 <section class="container my-5">
     <h2 class="text-center mb-4">Your Food is Ready</h2>
     <div class="text-center">
-        <a class="btn btn-custom m-2" href="/timer">
-            I collected the food
-        </a>
+        <button id="pickup-btn" class="btn">I collected the food</button>
     </div>
 </section>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='food_ready.css') }}">
+<script src="{{ url_for('static', filename='food_ready.js') }}"></script>
 
 {% endblock %}
