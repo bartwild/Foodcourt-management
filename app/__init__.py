@@ -14,7 +14,6 @@ def create_app():
     app.config.from_object(Config())
     from .views import (
         main,
-        cart,
         products,
         start,
         restaurants,
@@ -37,7 +36,6 @@ def create_app():
 
     app.register_blueprint(start.bp)
     app.register_blueprint(main.bp)
-    app.register_blueprint(cart.bp)
     app.register_blueprint(products.bp)
     app.register_blueprint(timer.bp)
     app.register_blueprint(restaurants.bp)
