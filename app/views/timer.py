@@ -17,3 +17,8 @@ bp = Blueprint(
 @bp.route("/")
 def timer():
     return render_template("timer/timer.html")
+
+
+@bp.route("/wait")
+def wait_for_order():
+    return render_template("timer/wait_for_order.html")
