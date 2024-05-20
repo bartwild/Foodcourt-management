@@ -8,6 +8,10 @@ body, html {
     flex-direction: column;
 }
 
+.content {
+    flex: 1;
+}
+
 .hero-section {
     /* background-color: rgba(137, 201, 202, 0.58); */
     background-color: rgba(247, 145, 12, 0.58);
@@ -32,8 +36,14 @@ body, html {
     object-fit: cover;
 }
 
+.restaurant-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none; 
+}
+
 .footer {
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -50,4 +60,29 @@ body, html {
 
 .arrow-icon:hover .material-icons {
     color: rgb(20, 81, 82); 
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 70px; /* Odstępy po bokach, możesz dostosować według potrzeby */
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; 
+    height: 40px; 
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+a:hover {
+    text-decoration: none; 
 }
