@@ -74,3 +74,9 @@
     font-size: 28px;
     font-weight: 500;
 }
+
+.time-message {
+    font-size: 30px;
+    margin: 20px 0;
+    color: #fb8500;
+}
