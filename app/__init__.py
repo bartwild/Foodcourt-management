@@ -4,16 +4,18 @@ from .config import Config
 from flask_migrate import Migrate
 from .database import db
 from .db_data_utils import load_data, truncate_tables
+from flask_caching import Cache
 
 socketio = SocketIO()  # Tworzymy globalną instancję SocketIO
-
+cache = Cache()
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config())
     from .views import main, cart, products, start, restaurants, timer, basket
     from .database import db
-
+    cache.init_app(app, config={'CACHE_TYPE': 'simple'})
+    print("Cache initialized: ", cache)
     migrate = Migrate(app, db)
     db.init_app(app)
 
