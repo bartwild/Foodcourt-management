@@ -55,7 +55,7 @@ function startTimer() {
 
         remaining--;
         updateTimer();
-    }, 1000);
+    }, 20);
 }
 
 window.onload = startTimer;
