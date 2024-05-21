@@ -10,26 +10,8 @@ function calculateMinutesSeconds() {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-
 function updateTimer() {
     timerText.textContent = calculateMinutesSeconds();
-}
-
-
-function startTimer() {
-    interval = setInterval(() => {
-        if (remaining <= 0) {
-            clearInterval(interval);
-            window.location.href = '/';
-            return;
-        }
-        if (remaining === 300) {
-            document.getElementById('extendContainer').style.display = 'block';
-        }
-
-        remaining--;
-        updateTimer();
-    }, 1000);
 }
 
 function extendTimer() {
@@ -41,7 +23,39 @@ function dismissContainer() {
     document.getElementById('extendContainer').style.display = 'none';
 }
 
+function freeTable() {
+    var table = 2;
+    var postData = {'table_number': parseInt(table), 'status': 'free'};
+    console.log('Table 1 is now free');
+    fetch('/update_tables', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+        })
+        
+}
+
 document.getElementById('extendButton').addEventListener('click', extendTimer);
 document.getElementById('dismissButton').addEventListener('click', dismissContainer);
+document.getElementById('free-table').addEventListener('click', freeTable);
+
+function startTimer() {
+    interval = setInterval(() => {
+        if (remaining <= 0) {
+            clearInterval(interval);
+            window.location.href = '/';
+            freeTable();
+            return;
+        }
+        if (remaining === 300) {
+            document.getElementById('extendContainer').style.display = 'block';
+        }
+
+        remaining--;
+        updateTimer();
+    }, 20);
+}
 
 window.onload = startTimer;
