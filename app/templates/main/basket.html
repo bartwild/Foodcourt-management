@@ -1,44 +1,32 @@
 {% extends 'base.html' %}
+{% block title %}Order Notification Example{% endblock %}
 {% block content %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Notification Example</title>
-    <link rel="stylesheet" href="static/order.css">
-</head>
-<body>
-    <div class="container my-5">
-        <h1>Your Cart</h1>
-        {% if cart %}
-            <ul class="list-group mb-3">
-                {% for item in cart %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ item.name }}
-                        <span>${{ item.price }}</span>
-                    </li>
-                {% endfor %}
-            </ul>
-            <a href="{{ url_for('basket.clear_cart') }}" class="btn btn-danger">Clear Cart</a>
-        {% else %}
-            <p>Your cart is empty.</p>
-        {% endif %}
-    </div>
-    <div id="notification" class="notification hidden">
-        <span id="notification-message">Your order has been processed successfully!</span>
-        <button id="close-btn">&times;</button>
-    </div>
+<div class="container my-5">
+    <h1>Your Cart</h1>
+    {% if cart %}
+        <ul class="list-group mb-3">
+            {% for item in cart %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ item.name }}
+                    <span>${{ item.price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a id="clear-button" href="{{ url_for('basket.clear_cart') }}" class="btn btn-danger" style="display:none;">Clear Cart</a>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
 
-    <!-- Featured Restaurants -->
+<a id="order-btn" href="/timer/wait" class="btn btn-primary">Submit Order</a>
 
+<div id="notification" class="notification hidden">
+    <span id="notification-message">You have to choose what do you want to order first!</span>
+    <button id="close-btn">&times;</button>
+</div>
 
-
-
-    <a id="order-btn" href="/timer/wait" class="btn">Submit Order</a>
-
-    <script src="static/order.js"></script>
-</body>
-</html>
+<link rel="stylesheet" href="{{ url_for('static', filename='order.css') }}">
+<script src="{{ url_for('static', filename='order.js') }}"></script>
 
 {% endblock %}
