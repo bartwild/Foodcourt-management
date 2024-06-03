@@ -39,7 +39,7 @@ def add_to_cart(id):
         )
         cache.set(cart_key, cart)
 
-    return redirect("/basket")
+    return redirect(f"{id}/basket")
 
 
 @bp.route("<int:id>/basket")
@@ -47,7 +47,7 @@ def view_cart(id):
     cart_key = f'cart_{session["session_id"]}'
 
     cart = cache.get(cart_key) or []
-    return render_template("main/basket.html", cart=cart)
+    return render_template("main/basket.html", cart=cart, id=id)
 
 
 @bp.route("<int:id>/clear_cart")
@@ -55,7 +55,7 @@ def clear_cart(id):
     cart_key = f'cart_{session["session_id"]}'
 
     cache.set(cart_key, [])
-    return redirect("/basket")
+    return redirect(f"{id}/basket")
 
 
 @bp.route("/basket/remove/<int:item_id>", methods=["POST"])

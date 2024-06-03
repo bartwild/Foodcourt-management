@@ -13,16 +13,16 @@ bp = Blueprint(
 @bp.route("<int:id>/products")
 def product_list(id):
     products = Product.query.all()
-    return render_template("main/products.html", products=products, category="Products")
+    return render_template("main/products.html", products=products, category="Products", id=id)
 
 
 @bp.route("<int:id>/products/<category>")
 def products_list(category, id):
     products = Product.query.filter_by(category=category).all()
-    return render_template("main/products.html", products=products, category=category)
+    return render_template("main/products.html", products=products, category=category, id=id)
 
 
 @bp.route("<int:id>/products/<category>/<name>")
 def product(name, category, id):
     product = Product.query.filter_by(name=name).first_or_404()
-    return render_template("main/product.html", product=product)
+    return render_template("main/product.html", product=product, id=id)

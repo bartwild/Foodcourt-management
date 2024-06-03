@@ -13,4 +13,4 @@ bp = Blueprint(
 
 @bp.route("<int:id>/")
 def start(id):
-    return render_template("start.html")
+    return render_template("start.html", id=id)

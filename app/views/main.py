@@ -51,7 +51,7 @@ def get_table_status():
 @bp.route("/<int:id>/main")
 def main(id):
     restaurants = Restaurant.query.all()
-    return render_template("main/main.html", restaurants=restaurants)
+    return render_template("main/main.html", restaurants=restaurants, id=id)
 
 
 @bp.route("/update_tables", methods=["POST"])
