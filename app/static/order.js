@@ -9,16 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     orderBtn.addEventListener('click', (event) => {
-        // Check if the cart is empty
         const cartItems = document.querySelectorAll('.list-group-item');
         if (cartItems.length === 0) {
-            event.preventDefault(); // Prevent the default action (navigation)
+            event.preventDefault();
             notification.classList.add('show');
             setTimeout(() => {
                 notification.classList.remove('show');
-            }, 5000); // Hide notification after 5 seconds
+            }, 5000);
         } else {
-            // Submit the form to clear the cart
             clearBtn.click();
         }
     });

@@ -1,7 +1,7 @@
 from flask import request, redirect, url_for, render_template, Blueprint, session
 from uuid import uuid4
 from .. import cache
-from ..models import Product
+from ..models import Product, Restaurant
 
 bp = Blueprint(
     "basket",
@@ -22,6 +22,7 @@ def before_request():
 def add_to_cart():
     product_id = request.form.get("product_id")
     product = Product.query.get(product_id)
+    restaurant = Restaurant.query.get(product.restaurant_id)
 
     if product:
         cart_key = f'cart_{session["session_id"]}'
@@ -33,6 +34,7 @@ def add_to_cart():
                 "name": product.name,
                 "price": product.price,
                 "quantity": 1,
+                "restaurant": restaurant.name,
             }
         )
         cache.set(cart_key, cart)
