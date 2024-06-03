@@ -3,6 +3,7 @@ const timerText = document.getElementById('timer');
 
 let interval;
 let remaining = duration;
+const table = window.location.pathname.split('/')[1];
 
 function calculateMinutesSeconds() {
     const minutes = Math.floor(remaining / 60);
@@ -24,7 +25,6 @@ function dismissContainer() {
 }
 
 function freeTable() {
-    var table = 2;
     var postData = {'table_number': parseInt(table), 'status': 'free'};
     console.log('Table 1 is now free');
     fetch('/update_tables', {
@@ -45,7 +45,7 @@ function startTimer() {
     interval = setInterval(() => {
         if (remaining <= 0) {
             clearInterval(interval);
-            window.location.href = '/';
+            window.location.href = '/' + table;
             freeTable();
             return;
         }

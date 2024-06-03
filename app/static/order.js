@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function occupieTable() {
-        var table = 1;
+        const table = window.location.pathname.split('/')[1];
+
         var postData = { 'table_number': parseInt(table), 'status': 'occupied' };
         console.log('Table 1 is now occupied');
         fetch('/update_tables', {
