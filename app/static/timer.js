@@ -26,20 +26,30 @@ function dismissContainer() {
 
 function freeTable() {
     var postData = {'table_number': parseInt(table), 'status': 'free'};
-    console.log('Table 1 is now free');
+    console.log('Table' + 'is now free');
     fetch('/update_tables', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(postData)
-        })
-        
+        })     
+}
+
+function clearCart() {
+    console.log('Clearing the cart');
+    fetch('/' + table + '/clear_cart', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+            },
+        })     
 }
 
 document.getElementById('extendButton').addEventListener('click', extendTimer);
 document.getElementById('dismissButton').addEventListener('click', dismissContainer);
 document.getElementById('free-table').addEventListener('click', freeTable);
+document.getElementById('free-table').addEventListener('click', clearCart);
 
 function startTimer() {
     interval = setInterval(() => {

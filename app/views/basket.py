@@ -50,12 +50,15 @@ def view_cart(id):
     return render_template("main/basket.html", cart=cart, id=id)
 
 
-@bp.route("<int:id>/clear_cart")
+@bp.route("<int:id>/clear_cart", methods=["GET", "POST"])
 def clear_cart(id):
     cart_key = f'cart_{session["session_id"]}'
-
     cache.set(cart_key, [])
-    return redirect(f"/{id}/basket")
+
+    if request.method == "GET":
+        return redirect(f"/{id}/basket")
+
+    return "Cart cleared!"
 
 
 @bp.route("/basket/remove/<int:item_id>", methods=["POST"])
