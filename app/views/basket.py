@@ -1,9 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, Blueprint
+from flask import request, redirect, url_for, render_template, Blueprint, session
+from uuid import uuid4
 from .. import cache
 from ..models import Product  
-# Konfiguracja cache
-
-
 
 bp = Blueprint(
     "basket",
@@ -13,31 +11,40 @@ bp = Blueprint(
     url_prefix="/",
 )
 
+@bp.before_request
+def before_request():
+    if 'session_id' not in session:
+        session['session_id'] = str(uuid4())
+
 @bp.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     product_id = request.form.get('product_id')
     product = Product.query.get(product_id)
     
     if product:
-        cart = cache.get('cart') or []
+        cart_key = f'cart_{session["session_id"]}'
+        
+        cart = cache.get(cart_key) or []
         cart.append({
             'id': product.id,
             'name': product.name,
             'price': product.price,
             'quantity': 1
         })
-        cache.set('cart', cart)
+        cache.set(cart_key, cart)
     
     return redirect('/basket')
 
 @bp.route('/basket')
 def view_cart():
-    cart = cache.get('cart') or []
+    cart_key = f'cart_{session["session_id"]}'
+    
+    cart = cache.get(cart_key) or []
     return render_template('main/basket.html', cart=cart)
 
 @bp.route('/clear_cart')
 def clear_cart():
-    cache.set('cart', [])
+    cart_key = f'cart_{session["session_id"]}'
+    
+    cache.set(cart_key, [])
     return redirect('/basket')
-
-
