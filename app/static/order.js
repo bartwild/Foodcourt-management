@@ -4,6 +4,7 @@ const closeBtn = document.getElementById('close-btn');
 const orderBtn = document.getElementById('order-btn');
 const clearBtn = document.getElementById('clear-button');
 
+
 closeBtn.addEventListener('click', () => {
     notification.classList.remove('show');
 });
@@ -23,6 +24,8 @@ orderBtn.addEventListener('click', (event) => {
     }
 });
 
+orderBtn.addEventListener('click', occupieTable);
+
 function occupieTable() {
     const table = window.location.pathname.split('/')[1];
     var postData = { 'table_number': parseInt(table), 'status': 'occupied' };
@@ -36,5 +39,4 @@ function occupieTable() {
     });
 }
 
-document.getElementById('order-btn').addEventListener('click', occupieTable);
 
