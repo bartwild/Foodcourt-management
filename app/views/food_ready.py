@@ -10,7 +10,7 @@ bp = Blueprint(
 )
 
 
-@bp.route("/food_ready")
-def product_list():
+@bp.route("<int:id>/food_ready")
+def product_list(id):
     # Do some stuff
     return render_template("main/food_ready.html")

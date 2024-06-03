@@ -18,8 +18,8 @@ def before_request():
         session["session_id"] = str(uuid4())
 
 
-@bp.route("/add_to_cart", methods=["POST"])
-def add_to_cart():
+@bp.route("<int:id>/add_to_cart", methods=["POST"])
+def add_to_cart(id):
     product_id = request.form.get("product_id")
     product = Product.query.get(product_id)
     restaurant = Restaurant.query.get(product.restaurant_id)
@@ -42,16 +42,16 @@ def add_to_cart():
     return redirect("/basket")
 
 
-@bp.route("/basket")
-def view_cart():
+@bp.route("<int:id>/basket")
+def view_cart(id):
     cart_key = f'cart_{session["session_id"]}'
 
     cart = cache.get(cart_key) or []
     return render_template("main/basket.html", cart=cart)
 
 
-@bp.route("/basket/clear_cart")
-def clear_cart():
+@bp.route("<int:id>/clear_cart")
+def clear_cart(id):
     cart_key = f'cart_{session["session_id"]}'
 
     cache.set(cart_key, [])
