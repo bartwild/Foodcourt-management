@@ -5,11 +5,10 @@
 <section class="container my-5">
     <h2 class="text-center mb-4">Your Food is Ready</h2>
     <div class="text-center">
-        <button id="pickup-btn" class="btn">I collected the food</button>
+        <a href="/{{id}}/timer" id="pickup-btn" class="btn">I collected the food</a>
     </div>
 </section>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='food_ready.css') }}">
-<script src="{{ url_for('static', filename='food_ready.js') }}"></script>
 
 {% endblock %}

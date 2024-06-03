@@ -20,13 +20,13 @@
                 </li>
             {% endfor %}
         </ul>
-        <a id="clear-button" href="{{ url_for('basket.clear_cart') }}" class="btn btn-danger" style="display:none;margin-top: 20px;">Clear Cart</a>
+        <a id="clear-button" href="/{{id}}/clear_cart'" class="btn btn-danger" style="display:none;">Clear Cart</a>
     {% else %}
         <p>Your cart is empty.</p>
     {% endif %}
 </div>
 
-<a id="order-btn" href="/timer/wait" class="btn btn-primary">Submit Order</a>
+<a id="order-btn" href="/{{id}}/timer/wait" class="btn btn-primary">Submit Order</a>
 
 <div id="notification" class="notification hidden">
     <span id="notification-message">You have to choose what do you want to order first!</span>

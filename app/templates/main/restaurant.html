@@ -18,7 +18,7 @@
     <h3>Our meals:</h3>
     <div class="row">
         {% for product in products %}
-        <a class="col-md-4 mb-4" href="/products/{{ product.category }}/{{ product.name }}">
+        <a class="col-md-4 mb-4" href="/{{id}}/products/{{ product.category }}/{{ product.name }}">
             <div class="card restaurant-card">
                 <img src="{{ url_for('static', filename=product.image_url)}}" class="card-img-top" alt="{{ product.name }}">
                 <div class="card-body">
