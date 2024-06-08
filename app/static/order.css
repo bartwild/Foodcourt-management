@@ -9,18 +9,14 @@ body {
     background-color: #fc2c08;
     color: #fff;
     padding: 20px;
-    /* Increase padding */
     border-radius: 10px;
-    /* Adjust border radius */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 400px;
-    /* Increase width */
     font-size: 18px;
-    /* Increase font size */
     transition: opacity 0.3s ease-in-out;
     opacity: 0;
     pointer-events: none;
@@ -36,7 +32,6 @@ body {
     border: none;
     color: #fff;
     font-size: 24px;
-    /* Increase font size for the close button */
     cursor: pointer;
 }
 
