@@ -20,9 +20,9 @@ bp = Blueprint(
 
 table_status = {
     1: {"status": "free", "sector": 1},
-    2: {"status": "occupied", "sector": 1},
-    3: {"status": "occupied", "sector": 2},
-    4: {"status": "occupied", "sector": 2},
+    2: {"status": "free", "sector": 1},
+    3: {"status": "free", "sector": 2},
+    4: {"status": "free", "sector": 2},
 }
 
 
