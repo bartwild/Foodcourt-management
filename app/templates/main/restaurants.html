@@ -6,9 +6,9 @@
 <div class="container my-5">
     <div class="row">
         {% for restaurant in restaurants %}
-        <a class="col-md-4" href="restaurant/{{restaurant.name}}">
+        <a class="col-md-4" href="/{{id}}/restaurant/{{restaurant.name}}">
             <div class="card restaurant-card">
-                <img src="{{ restaurant.image_url }}" class="card-img-top" alt="{{ restaurant.name }}">
+                <img src="{{url_for('static', filename=restaurant.image_url ) }}" class="card-img-top" alt="{{ restaurant.name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ restaurant.name }}</h5>
                     <p class="card-text flex-grow-1">{{ restaurant.description }}</p>

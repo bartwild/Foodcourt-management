@@ -27,7 +27,7 @@
 </div>
 
 <script> 
-const duration = 120; // duration in seconds
+const duration = 30; // duration in seconds
 let interval;
 let remaining = duration;
 
@@ -35,7 +35,7 @@ function startTimer() {
 interval = setInterval(() => {
     if (remaining <= 0) {
         clearInterval(interval);
-        window.location.href = '/food_ready';
+        window.location.href = '/{{id}}/food_ready';
         return;
     }
     remaining--;

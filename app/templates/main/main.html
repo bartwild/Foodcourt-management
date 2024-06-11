@@ -10,10 +10,10 @@
 
     <!-- Food Buttons -->
     <section class="container text-center my-4">
-        <a class="btn btn-custom m-2" href="/products/Pizza">
+        <a class="btn btn-custom m-2" href="/{{id}}/products/Pizza">
             <span class="material-icons icon-pizza">local_pizza</span> Pizza
         </a>
-        <a class="btn btn-custom m-2" href="/products/Burger">
+        <a class="btn btn-custom m-2" href="/{{id}}/products/Burger">
             <span class="material-icons icon-burger">fastfood</span> Burger
         </a>
     </section>
@@ -21,15 +21,15 @@
     <!-- Featured Restaurants -->
   <section class="container my-5">
         <h2 class="text-center mb-4">What's Delicious Around Here?
-            <a class="arrow-icon" href="/restaurants">
+            <a class="arrow-icon" href="/{{id}}/restaurants">
                 <span class="material-icons">arrow_forward</span>
             </a>
         </h2>
         <div class="row justify-content-center">
             {% for restaurant in restaurants %}
-            <a class="col-12 col-sm-6 col-md-4 mb-4" href="restaurant/{{restaurant.name}}">
+            <a class="col-12 col-sm-6 col-md-4 mb-4" href="/{{id}}/restaurant/{{restaurant.name}}">
                 <div class="card restaurant-card">
-                    <img src="{{ restaurant.image_url }}" class="card-img-top img-fluid" alt="{{ restaurant.name }}">
+                    <img src="{{url_for('static', filename=restaurant.image_url ) }}" class="card-img-top img-fluid" alt="{{ restaurant.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ restaurant.name }}</h5>
                     </div>

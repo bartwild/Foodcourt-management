@@ -18,8 +18,8 @@ def before_request():
         session["session_id"] = str(uuid4())
 
 
-@bp.route("/add_to_cart", methods=["POST"])
-def add_to_cart():
+@bp.route("<int:id>/add_to_cart", methods=["POST"])
+def add_to_cart(id):
     product_id = request.form.get("product_id")
     product = Product.query.get(product_id)
     restaurant = Restaurant.query.get(product.restaurant_id)
@@ -39,27 +39,30 @@ def add_to_cart():
         )
         cache.set(cart_key, cart)
 
-    return redirect("/basket")
+    return redirect(f"/{id}/basket")
 
 
-@bp.route("/basket")
-def view_cart():
+@bp.route("<int:id>/basket")
+def view_cart(id):
     cart_key = f'cart_{session["session_id"]}'
 
     cart = cache.get(cart_key) or []
-    return render_template("main/basket.html", cart=cart)
+    return render_template("main/basket.html", cart=cart, id=id)
 
 
-@bp.route("/basket/clear_cart")
-def clear_cart():
+@bp.route("<int:id>/basket/clear_cart", methods=["GET", "POST"])
+def clear_cart(id):
     cart_key = f'cart_{session["session_id"]}'
-
     cache.set(cart_key, [])
-    return redirect("/basket")
+
+    if request.method == "GET":
+        return redirect(f"/{id}/basket")
+
+    return "Cart cleared!"
 
 
-@bp.route("/basket/remove/<int:item_id>", methods=["POST"])
-def remove_item(item_id):
+@bp.route("<int:id>/basket/remove/<int:item_id>", methods=["POST"])
+def remove_item(id, item_id):
     cart_key = f'cart_{session["session_id"]}'
     cart = cache.get(cart_key) or []
 
@@ -76,4 +79,4 @@ def remove_item(item_id):
             continue
 
     cache.set(cart_key, new_cart)
-    return redirect("/basket")
+    return redirect(f"/{id}/basket")
