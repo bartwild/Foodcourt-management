@@ -33,7 +33,13 @@ function freeTable() {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(postData)
-        })     
+        })
+    fetch('/' + parseInt(table) + '/basket/clear_cart', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json'
+            },
+        })
 }
 
 function clearCart() {
@@ -65,7 +71,7 @@ function startTimer() {
 
         remaining--;
         updateTimer();
-    }, 20);
+    }, 5);
 }
 
 window.onload = startTimer;
