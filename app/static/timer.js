@@ -34,22 +34,16 @@ function freeTable() {
             },
             body: JSON.stringify(postData)
         })
-    fetch('/' + parseInt(table) + '/basket/clear_cart', {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json'
-            },
-        })
 }
 
 function clearCart() {
     console.log('Clearing the cart');
-    fetch('/' + table + '/clear_cart', {
+    fetch('/' + parseInt(table) + '/basket/clear_cart', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
             },
-        })     
+        })
 }
 
 document.getElementById('extendButton').addEventListener('click', extendTimer);
@@ -63,6 +57,7 @@ function startTimer() {
             clearInterval(interval);
             window.location.href = '/' + table;
             freeTable();
+            clearCart();
             return;
         }
         if (remaining === 300) {
