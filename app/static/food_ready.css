@@ -1,18 +1,40 @@
-body {
-    font-family: Arial, sans-serif;
+/* Button styling */
+.btn {
+    display: inline-block; /* Necessary for width and padding to take effect */
+    padding: 10px 20px; /* Initial padding for the button */
+    color: white; /* Text color */
+    background-color: #007bff; /* Bootstrap primary blue */
+    border: none; /* No borders */
+    border-radius: 5px; /* Rounded corners for the button */
+    text-decoration: none; /* Remove underline from link */
+    font-size: 1rem; /* Initial button text size */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
 }
 
-#pickup-btn {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 10px 40px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    text-decoration: none;
-    color: black;
+.btn:hover, .btn:focus {
+    background-color: #0056b3; /* Darker blue on hover/focus */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Slight shadow on hover for depth */
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+/* Tablet adjustments for a much larger button */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .btn {
+        padding: 30px 60px; /* Substantially increase padding for a much larger button */
+        font-size: 2rem; /* Substantially larger font size for better readability */
+        border-radius: 10px; /* Larger border-radius for aesthetic balance */
+    }
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 767px) {
+    .container {
+        width: 95%; /* Full width with slight margin on smaller screens */
+    }
+    h2 {
+        font-size: 1.5rem; /* Slightly smaller font size on mobile */
+    }
+    .btn {
+        padding: 12px 24px; /* Larger touch targets on mobile */
+    }
 }
