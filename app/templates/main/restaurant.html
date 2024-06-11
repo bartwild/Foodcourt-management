@@ -5,7 +5,7 @@
     <div class="restaurant-desc mb-5">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="/{{ restaurant.image_url }}" class="card-img" alt="{{ restaurant.name }}">
+                <img src="{{ url_for('static', filename=restaurant.image_url)}}" class="card-img" alt="{{ restaurant.name }}">
             </div>
             <div class="col-md-8">
                 <div>
@@ -18,9 +18,9 @@
     <h3>Our meals:</h3>
     <div class="row">
         {% for product in products %}
-        <a class="col-md-4 mb-4" href="/products/{{ product.category }}/{{ product.name }}">
+        <a class="col-md-4 mb-4" href="/{{id}}/products/{{ product.category }}/{{ product.name }}">
             <div class="card restaurant-card">
-                <img src="/{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                <img src="{{ url_for('static', filename=product.image_url)}}" class="card-img-top" alt="{{ product.name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text flex-grow-1">{{ product.description }}</p>

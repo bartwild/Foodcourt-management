@@ -6,9 +6,9 @@
 <div class="container my-5">
     <div class="row">
         {% for product in products %}
-        <a class="col-md-4" href="/products/{{ product.category }}/{{ product.name }}">
+        <a class="col-md-4" href="/{{id}}/products/{{ product.category }}/{{ product.name }}">
             <div class="card restaurant-card">
-                <img src="/{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                <img src="{{ url_for('static', filename=product.image_url)}}" class="card-img-top" alt="{{ product.name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text flex-grow-1">{{ product.description }}</p>

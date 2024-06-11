@@ -13,20 +13,20 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <span class="mr-3">${{ item.price }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <form action="{{ url_for('basket.remove_item', item_id=item.id) }}" method="post" style="display:inline;">
+                        <form action="{{ url_for('basket.remove_item', item_id=item.id, id=id) }}" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                         </form>
                     </div>
                 </li>
             {% endfor %}
         </ul>
-        <a id="clear-button" href="{{ url_for('basket.clear_cart') }}" class="btn btn-danger" style="display:none;margin-top: 20px;">Clear Cart</a>
+        <a id="clear-button" href="/{{id}}/clear_cart'" class="btn btn-danger">Clear Cart</a>
     {% else %}
         <p>Your cart is empty.</p>
     {% endif %}
 </div>
 
-<a id="order-btn" href="/timer/wait" class="btn btn-primary">Submit Order</a>
+<a id="order-btn" href="/{{id}}/timer/wait" class="btn btn-primary">Submit Order</a>
 
 <div id="notification" class="notification hidden">
     <span id="notification-message">You have to choose what do you want to order first!</span>

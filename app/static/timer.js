@@ -3,6 +3,7 @@ const timerText = document.getElementById('timer');
 
 let interval;
 let remaining = duration;
+const table = window.location.pathname.split('/')[1];
 
 function calculateMinutesSeconds() {
     const minutes = Math.floor(remaining / 60);
@@ -24,9 +25,8 @@ function dismissContainer() {
 }
 
 function freeTable() {
-    var table = 2;
     var postData = {'table_number': parseInt(table), 'status': 'free'};
-    console.log('Table 1 is now free');
+    console.log('Table' + 'is now free');
     fetch('/update_tables', {
           method: 'POST',
           headers: {
@@ -34,18 +34,34 @@ function freeTable() {
             },
             body: JSON.stringify(postData)
         })
-        
+    fetch('/' + parseInt(table) + '/basket/clear_cart', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json'
+            },
+        })
+}
+
+function clearCart() {
+    console.log('Clearing the cart');
+    fetch('/' + table + '/clear_cart', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+            },
+        })     
 }
 
 document.getElementById('extendButton').addEventListener('click', extendTimer);
 document.getElementById('dismissButton').addEventListener('click', dismissContainer);
 document.getElementById('free-table').addEventListener('click', freeTable);
+document.getElementById('free-table').addEventListener('click', clearCart);
 
 function startTimer() {
     interval = setInterval(() => {
         if (remaining <= 0) {
             clearInterval(interval);
-            window.location.href = '/';
+            window.location.href = '/' + table;
             freeTable();
             return;
         }
@@ -55,7 +71,7 @@ function startTimer() {
 
         remaining--;
         updateTimer();
-    }, 20);
+    }, 5);
 }
 
 window.onload = startTimer;

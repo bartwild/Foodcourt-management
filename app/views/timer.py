@@ -10,15 +10,15 @@ bp = Blueprint(
     __name__,
     template_folder="templates",
     static_folder="static",
-    url_prefix="/timer",
+    url_prefix="/",
 )
 
 
-@bp.route("/")
-def timer():
-    return render_template("timer/timer.html")
+@bp.route("<int:id>/timer/")
+def timer(id):
+    return render_template("timer/timer.html", id=id)
 
 
-@bp.route("/wait")
-def wait_for_order():
-    return render_template("timer/wait_for_order.html")
+@bp.route("<int:id>/timer/wait")
+def wait_for_order(id):
+    return render_template("timer/wait_for_order.html", id=id)
