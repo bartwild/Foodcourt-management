@@ -7,3 +7,5 @@
 ```
 $ docker-compose up -d
 ```
+
+### For azure deployment go to deployment branch and follow README
