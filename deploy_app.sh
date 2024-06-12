@@ -9,8 +9,8 @@ APP_PORT=$5
 sudo apt-get update
 sudo apt-get install -y git
 
-git clone https://oauth2:glpat-8QYQLvwzP_wgjNqecANb@gitlab-stud.elka.pw.edu.pl/piar_student_projects/24l/z10.git
-cd z10
+git clone https://github.com/bartwild/Foodcourt-management.git
+cd Foodcourt-management
 
 # Pobieranie najnowszej wersji Docker'a
 curl -fsSL https://get.docker.com -o get-docker.sh
